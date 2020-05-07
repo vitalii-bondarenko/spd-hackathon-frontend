@@ -1,0 +1,170 @@
+<div class="user__list">
+  <div class="container">
+    <h1 class="user__title">
+      Users List:
+    </h1>
+    <table class="user__table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Gitlab</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of usersList">
+          <td>{{user.id}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.password}}</td>
+          <td>{{user.gitlab}}</td>
+          <td>{{user.status? 'Admin': 'User'}}</td>
+          <td>
+            <span
+              (click)="removeUser(user.id)"
+              class="user__remove"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <div class="user__wrap">
+      <button
+        class="user__add"
+        (click)="showForm()">
+        Add new user
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div #addUserPopup class="user__popup" *ngIf="isAdmin && formIsShown">
+  <form
+    autocomplete="off"
+    class="user__form"
+    #createUserForm="ngForm"
+    (submit)="createUserForm.form.valid ? createUser() : null;"
+  >
+    <button
+      class="user__popup-close"
+      (click)="hideForm()">
+      Hide form
+    </button>
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="inputFullName">
+        Full Name
+      </label>
+      <input
+        autocomplete="off"
+        #name="ngModel"
+        [(ngModel)]="newUser.name"
+        id="inputFullName"
+        class="user__input"
+        name="name"
+        placeholder="Full Name"
+        required
+        type="text"
+      >
+    </div>
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="inputEmail">
+        Email
+      </label>
+      <input
+        autocomplete="off"
+        #email="ngModel"
+        [(ngModel)]="newUser.email"
+        id="inputEmail"
+        class="user__input"
+        name="email"
+        placeholder="Email address"
+        email
+        required
+        type="email"
+      >
+    </div>
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="inputPassword">
+        Password
+      </label>
+      <input
+        #paswword="ngModel"
+        autocomplete="off"
+        [(ngModel)]="newUser.password"
+        id="inputPassword"
+        name="password"
+        placeholder="Password"
+        minlength="6"
+        class="user__input"
+        required
+        type="password"
+      >
+    </div>
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="gitlab">
+        Gitlab
+      </label>
+      <input
+        #gitlab="ngModel"
+        [(ngModel)]="newUser.gitlab"
+        id="gitlab"
+        name="gitlab"
+        class="user__input"
+        placeholder="Gitlab login"
+        type="text"
+      >
+    </div>
+
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="userType">
+        Select user type
+      </label>
+      <select
+        id="userType"
+        class="user__input"
+        required
+        [(ngModel)]="newUser.status"
+        name="userType"
+        value="Select user type"
+        size="0">
+        <option selected disabled>Select user type</option>
+        <option value=0>User</option>
+        <option value=1>Admin</option>
+      </select>
+    </div>
+
+    <div class="user__group">
+      <label
+        class="user__label">
+        Select user subject
+      </label>
+      <label *ngFor="let course of coursesList; let i = index" class="user__type">
+        <input
+          name="courses{{i}}"
+          [(ngModel)]="newUser.courses[i]"
+          type="checkbox">
+        <span></span>
+        {{course.name}}
+      </label>
+    </div>
+    <button
+      class="user__btn"
+      (click)="createUserForm.form.markAllAsTouched()"
+      type="submit">
+      Submit
+    </button>
+  </form>
+</div>

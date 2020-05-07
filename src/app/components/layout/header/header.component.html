@@ -1,1 +1,11 @@
-<p>header works!</p>
+<header class="header">
+  <div class="header__wrap">
+    <button (click)="openSidebar.emit()" class="header__menu"></button>
+    <button
+      class="header__logout"
+      (click)="logout()">
+      <i></i>
+      Logout
+    </button>
+  </div>
+</header>

@@ -1,0 +1,72 @@
+.user {
+  &__list {
+    padding-top: 60px;
+  }
+  &__title {
+    font-size: 42px;
+    line-height: 50px;
+    font-weight: 900;
+    color: #073763;
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+  &__remove {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background: url("/assets/img/icons/close.svg") no-repeat center;
+    background-size: contain;
+  }
+  &__table {
+    margin-bottom: 30px;
+    width: 100%;
+    border-radius: 5px;
+    & tr {
+      padding-right: 55px;
+    }
+    & th, td {
+      padding: 12px 13px;
+      border: 1px solid #706c61;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    & th {
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    & tr {
+      & td:last-of-type {
+        border: none;
+        position: relative;
+        width: 60px;
+      }
+    }
+  }
+  &__wrap {
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__add {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.14px;
+    border-radius: 5px;
+    padding: 14px 5px 14px;
+    background-color: #ffbd00;
+    cursor: pointer;
+    -webkit-transition: all .75s;
+    transition: all .75s;
+    border: none;
+    max-width: 320px;
+  }
+}

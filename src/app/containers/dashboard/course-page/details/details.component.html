@@ -1,0 +1,68 @@
+<div class="details__card">
+  <div class="container">
+    <div class="details__wrap">
+      <div class="details__info">
+        <h1 class="details__title">
+          Lesson: {{lesson.lessonNumber}} <br>
+          {{lesson.subject}}: {{lesson.title}}
+        </h1>
+        <p class="details__author">
+          {{lesson.lectorName}}<br>
+          {{lesson.lectorPosition}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="details">
+  <div class="container">
+    <p class="details__description">
+      {{lesson.description}}
+    </p>
+    <div class="details__video details__mg">
+      <iframe [src]='sanitizer.bypassSecurityTrustResourceUrl(lesson.videoUrl)'
+              width="600"
+              height="450"
+              frameborder="0" style="border:0"
+              allowfullscreen>
+      </iframe>
+    </div>
+    <h3 class="details__title">
+      Домашнее задание:
+    </h3>
+    <p class="details__text details__mg">{{lesson.homework}}</p>
+    <p class="details__deadline"></p>
+    <h3 class="details__title">
+      Вопросы по лекции:
+    </h3>
+    <div class="details__chat">
+      <div *ngFor="let message of messages" class="details__message">
+        <span class="details__chat-name">
+          {{message.userFullName}}:
+        </span>
+        <span class="details__chat-message">
+          {{message.text}}
+        </span>
+      </div>
+    </div>
+    <form
+      #commentForm="ngForm"
+      (submit)="commentForm.form.valid ? sendComment() : null;"
+      class="details__form">
+      <textarea
+        #text="ngModel"
+        [(ngModel)]="comment.text"
+        name="message"
+        class="details__textarea"
+        placeholder="Ваше сообщение"></textarea>
+      <div class="details__btn-wrap">
+        <button
+          type="submit"
+          class="details__btn">
+          Отправить
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

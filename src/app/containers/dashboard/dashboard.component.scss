@@ -1,0 +1,12 @@
+.content {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  padding: 60px 0 0;
+}
+
+@media screen and (max-width: 1450px) {
+  .content {
+    margin-left: 0;
+    width: 100%;
+  }
+}

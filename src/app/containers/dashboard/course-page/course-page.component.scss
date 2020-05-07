@@ -1,0 +1,107 @@
+.card {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-top: 60px;
+  }
+  &__col {
+    padding: 0 15px;
+    width: 50%;
+
+    &:not(:last-child) {
+      margin-bottom: 50px;
+    }
+  }
+  &__item {
+    position: relative;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    background: #ffbd00 url("/assets/img/square_spd.png") repeat-y right top;
+    background-size: contain;
+    min-height: 300px;
+
+    cursor: pointer;
+    &:hover {
+      & .card__dop {
+        transform: translateY(100%);
+        opacity: 1;
+        z-index: 15;
+      }
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  &__info {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+  }
+  &__title {
+    font-size: 29px;
+    line-height: 30px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-weight: 900;
+    color: #073763;
+    max-width: 330px;
+  }
+  &__name {
+    font-weight: 500;
+    color: #fff;
+    max-width: 330px;
+  }
+  &__status {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    border-bottom-right-radius: 30px;
+
+    background-color: #555;
+    &.done {
+      background-color: #8cba51;
+    }
+    &.error {
+      background-color: #c81912;
+    }
+    &.in-process {
+      background-color: #706c61;
+    }
+  }
+  &__dop {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 5px 20px;
+    background: #fff;
+
+    font-size: 14px;
+    transform: translateY(-100%);
+    border-radius: 0 0 3px 3px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .5s, transform .5s, z-index 2s;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .card__col {
+    width: 100%;
+  }
+  .card__title {
+    font-size: 19px;
+    line-height: 25px;
+  }
+}

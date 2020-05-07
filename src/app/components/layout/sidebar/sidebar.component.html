@@ -1,1 +1,95 @@
-<p>sidebar works!</p>
+<nav class="sidebar" [class.opened]="opened">
+  <a
+    class="sidebar__logo">
+    <img
+      src="/assets/img/logo.jpg"
+      alt=""/>
+  </a>
+  <ul class="sidebar__nav">
+    <li>
+      <a
+        class="sidebar__link"
+        routerLink="/news"
+        routerLinkActive="active">
+        <i class="icon icon-news"></i>
+        News
+      </a>
+    </li>
+    <li *ngIf="isAdmin">
+      <a
+        class="sidebar__link"
+        routerLink="/users"
+        routerLinkActive="active">
+        <i class="icon icon-user"></i>
+        Users
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://docs.google.com/spreadsheets/d/1i05eDZl06PasUujQ1hCrZJKT7vtwSpE2uD-U_DsW4yc/edit?ouid=102886988591383007814&usp=sheets_home&ths=true"
+        target="_blank"
+        class="sidebar__link">
+        <i class="icon icon-gt"></i>
+        Report
+      </a>
+    </li>
+  </ul>
+  <h2 class="sidebar__title">Subjects</h2>
+  <ul class="sidebar__nav">
+    <li *ngFor="let subject of userSubjectsList">
+      <a
+        class="sidebar__link"
+        routerLink="/courses/{{subject.id}}"
+        routerLinkActive="active">
+        <i class="icon icon-{{subject.name | lowercase}}"></i>
+        {{subject.name}}
+      </a>
+    </li>
+    <li *ngIf="isAdmin"
+       class="sidebar__btn-wrap">
+      <a (click)="showForm()" class="sidebar__btn">
+        Add new course
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+<div #addUserPopup class="user__popup" *ngIf="isAdmin && formIsShown">
+  <form
+    autocomplete="off"
+    class="user__form"
+    #newCourseForm="ngForm"
+    (submit)="newCourseForm.form.valid ? addNewCourse() : null;"
+  >
+    <button
+      class="user__popup-close"
+      (click)="hideForm()">
+      Hide form
+    </button>
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="inputCourseName">
+        Course Name
+      </label>
+      <input
+        autocomplete="off"
+        #name="ngModel"
+        [(ngModel)]="newCourse.name"
+        id="inputCourseName"
+        class="user__input"
+        name="name"
+        placeholder="Course Name"
+        required
+        type="text"
+      >
+    </div>
+    <button
+      class="user__btn"
+      (click)="newCourseForm.form.markAllAsTouched()"
+      type="submit">
+      Submit
+    </button>
+  </form>
+</div>

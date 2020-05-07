@@ -1,1 +1,228 @@
-<p>course-page works!</p>
+<div class="container">
+  <div class="card__list">
+
+    <div *ngFor="let lesson of lessons" class="card__col">
+      <div routerLink="details/{{lesson.id}}" class="card__item">
+        <div class="card__info">
+          <h2 class="card__title">Lesson: {{lesson.id}} <br> {{lesson.subject}}: {{lesson.title}}</h2>
+          <p class="card__name">
+            {{lesson.lectorName}} <br>
+            {{lesson.lectorPosition}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button *ngIf="isAdmin"
+  class="add-new"
+  (click)="showForm()">
+  Show form
+</button>
+
+
+<div #addUserPopup class="user__popup" *ngIf="isAdmin && formIsShown">
+  <form
+    autocomplete="off"
+    class="user__form user__form_long"
+    #coursesForm="ngForm"
+    (submit)="coursesForm.form.valid ? addLesson() : null;"
+  >
+    <button
+      class="user__popup-close"
+      (click)="hideForm()">
+      Hide form
+    </button>
+
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="lessonNumber">
+        Lesson number
+      </label>
+      <input
+        autocomplete="off"
+        #lessonNumber="ngModel"
+        [(ngModel)]="newLesson.lessonNumber"
+        id="lessonNumber"
+        class="user__input"
+        name="lessonNumber"
+        placeholder="Lesson number"
+        required
+        type="text" />
+    </div>
+
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="title">
+        Lesson title
+      </label>
+      <input
+        autocomplete="off"
+        #title="ngModel"
+        [(ngModel)]="newLesson.title"
+        id="title"
+        class="user__input"
+        name="title"
+        placeholder="Lesson title"
+        required
+        type="text" />
+    </div>
+
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="description">
+        Lesson description
+      </label>
+      <textarea
+        autocomplete="off"
+        #description="ngModel"
+        [(ngModel)]="newLesson.description"
+        id="description"
+        class="user__input textarea"
+        name="description"
+        placeholder="Description lesson"
+        required
+      ></textarea>
+    </div>
+
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="lectorName">
+        Lector name
+      </label>
+      <input
+        autocomplete="off"
+        #lectorName="ngModel"
+        [(ngModel)]="newLesson.lectorName"
+        id="lectorName"
+        class="user__input"
+        name="lectorName"
+        placeholder="Lector Name"
+        required
+        type="text" />
+    </div>
+
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="lectorPosition">
+        Lector position
+      </label>
+      <input
+        autocomplete="off"
+        #lectorPosition="ngModel"
+        [(ngModel)]="newLesson.lectorPosition"
+        id="lectorPosition"
+        class="user__input"
+        name="lectorPosition"
+        placeholder="Lector position"
+        required
+        type="text" />
+    </div>
+
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="deadline">
+        Deadline
+      </label>
+      <input
+        autocomplete="off"
+        #deadline="ngModel"
+        [(ngModel)]="newLesson.deadline"
+        id="deadline"
+        class="user__input"
+        name="deadline"
+        placeholder="Deadline"
+        required
+        type="date" />
+    </div>
+
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="presentation_ulr">
+        Presentation link
+      </label>
+      <input
+        autocomplete="off"
+        #presentation_ulr="ngModel"
+        [(ngModel)]="newLesson.presentation_ulr"
+        id="presentation_ulr"
+        class="user__input"
+        name="presentation_ulr"
+        placeholder="Presentation link"
+        required
+        type="text"
+        url />
+    </div>
+
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="videoUrl">
+        Video link
+      </label>
+      <input
+        autocomplete="off"
+        #videoUrl="ngModel"
+        [(ngModel)]="newLesson.videoUrl"
+        id="videoUrl"
+        class="user__input"
+        name="videoUrl"
+        placeholder="Video link"
+        required
+        url
+        type="text" />
+    </div>
+
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="homework">
+        Homework description
+      </label>
+      <textarea
+        autocomplete="off"
+        #videoUrl="ngModel"
+        [(ngModel)]="newLesson.homework"
+        id="homework"
+        class="user__input textarea"
+        name="homework"
+        placeholder="Homework message"
+        required
+        type="text"
+      ></textarea>
+    </div>
+
+<!--    <div class="user__group">-->
+<!--      <label-->
+<!--        class="user__label"-->
+<!--        for="additional">-->
+<!--      </label>-->
+<!--      <input-->
+<!--        autocomplete="off"-->
+<!--        #additional="ngModel"-->
+<!--        [(ngModel)]="newLesson.homework"-->
+<!--        id="additional"-->
+<!--        class="user__input"-->
+<!--        name="additional"-->
+<!--        placeholder="additional"-->
+<!--        required-->
+<!--        type="text"-->
+<!--      >-->
+<!--    </div>-->
+
+    <button
+      class="user__btn"
+      (click)="coursesForm.form.markAllAsTouched()"
+      type="submit">
+      Submit
+    </button>
+  </form>
+</div>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
+import { AdminGuard } from '../../modules/auth/admin.guard';
 
 const routes: Routes = [
   {
@@ -9,12 +10,21 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'users',
+        redirectTo: 'news',
         pathMatch: 'full'
       },
       {
-        path: 'users',
+        path: 'news',
+        loadChildren: () => import('./news/news.module').then(m => m.NewsModule)
+      },
+      {
+        path: 'courses/:id',
         loadChildren: () => import('./course-page/course-page.module').then(m => m.CoursePageModule)
+      },
+      {
+        path: 'users',
+        canActivate: [AdminGuard],
+        loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
       }
     ]
   }

@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './modules/auth/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'courses',
-    // canActivate: [ AuthGuard ],
+    path: 'login',
+    loadChildren: () => import('./containers/login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: '',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./containers/dashboard/dashboard.module').then(m => m.DashboardModule),
   },
   {
@@ -17,4 +22,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

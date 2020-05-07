@@ -1,0 +1,272 @@
+.body-bg {
+  background: #f8fafb;
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+
+html {
+  box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1150px;
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  font-weight: 300;
+  src: url("/assets/fonts/MuseoSansCyrl/MuseoSansCyrl_300.ttf");
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  font-weight: 500;
+  src: url("/assets/fonts/MuseoSansCyrl/MuseoSansCyrl_500.ttf");
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  font-weight: 700;
+  src: url("/assets/fonts/MuseoSansCyrl/MuseoSansCyrl_700.ttf");
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  font-weight: 900;
+  src: url("/assets/fonts/MuseoSansCyrl/MuseoSansCyrl_900.ttf");
+}
+
+html, body {
+  font: 400 18px/27px "Museo Sans", sans-serif;
+  color: #424242;
+}
+
+a:focus, button:focus, input:focus {
+  outline: none;
+}
+
+.user__popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  opacity: 1;
+  background-color: rgba(32, 32, 32, .8);
+  transition: opacity 0.5s;
+}
+
+.user__form::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+.user__form::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+.user__form::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #D62929;
+}
+
+.user__popup.active {
+  z-index: 100;
+  opacity: 1;
+}
+.user__popup-close {
+  position: absolute;
+  right: 0;
+  top: -32px;
+  cursor: pointer;
+  transform: translate(50%, -50%);
+  width: 41px;
+  height: 41px;
+  border: none;
+  font-size: 0;
+  border-radius: 50%;
+  background: url("/assets/img/icons/close.svg") no-repeat center;
+  background-size: contain;
+}
+.user__popup-close:focus {
+  outline: none;
+}
+.user__form {
+  position: relative;
+  display: block;
+  max-width: 540px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 10px;
+  background: #fff;
+  max-height: 85vh;
+  overflow-y: scroll;
+}
+.user__form_long {
+  max-width: 720px;
+}
+.user__form .user__popup-close {
+  right: 5px;
+  transform: none;
+  top: 5px;
+}
+.user__group {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.user__label {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+.user__input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 5px 5px 5px 25px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  font: 18px/13px 'Museo Sans';
+  transition: border-color 0.4s;
+  font-weight: 500;
+  color: #073763;
+}
+.user__input.textarea {
+  min-height: 150px;
+  resize: none;
+  padding: 15px 10px 15px 25px;
+  line-height: 24px;
+}
+.user__input:focus {
+  outline: none;
+}
+.user__input.ng-invalid.ng-touched {
+  border-color: #ef1f27;
+}
+.user__btn {
+  display: block;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.14px;
+  border-radius: 5px;
+  padding: 18px 5px 18px;
+  background-color: #ffbd00;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+.user__btn:focus {
+  outline: none;
+}
+.user__type {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 19px;
+}
+.user__type input {
+  display: none;
+}
+.user__type input:checked + span {
+  background: #073763 url("/assets/img/icons/confirm.svg") no-repeat center;
+  background-size: 10px;
+}
+.user__type span {
+  display: block;
+  width: 19px;
+  height: 19px;
+  border-radius: 4px;
+  border: 2px solid #073763;
+  margin-right: 8px;
+  transition: background-color 0.5s;
+}
+.user__type span:not(:last-of-type) {
+  margin-bottom: 4px;
+}
+
+.add-new {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  font-size: 0;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  background: url("/assets/img/icons/plus.svg") no-repeat center;
+  background-size: contain;
+}

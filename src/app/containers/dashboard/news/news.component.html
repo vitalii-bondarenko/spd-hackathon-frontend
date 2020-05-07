@@ -1,0 +1,120 @@
+<div class="container news__mt">
+  <h3 class="details__title details__title_center">
+    News:
+  </h3>
+  <div class="news__list">
+    <div *ngFor="let news of newsList" class="news__col">
+      <h2 class="news__title">
+        {{news.title}}
+      </h2>
+      <p class="news__text">
+        Created: <span>{{news.createdBy}}</span>
+      </p>
+      <p class="news__text">
+        Created: <span>{{news.createdAt | date:'dd-MM-yyyy'}}</span>
+      </p>
+      <div *ngIf="news.videoUrl" class="news__video">
+        <iframe [src]='sanitizer.bypassSecurityTrustResourceUrl(news.videoUrl)'
+                width="600"
+                height="450"
+                frameborder="0" style="border:0"
+                allowfullscreen>
+        </iframe>
+      </div>
+      <p class="news__description">
+        <span>
+          {{news.text}}
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<button *ngIf="isAdmin"
+  class="add-new"
+  (click)="showForm()">
+  Show form
+</button>
+
+
+<div #addUserPopup class="user__popup" *ngIf="isAdmin && formIsShown">
+  <form
+    autocomplete="off"
+    class="user__form"
+    #newsForm="ngForm"
+    (submit)="newsForm.form.valid ? addNews() : null;"
+  >
+    <button
+      class="user__popup-close"
+      (click)="hideForm()">
+      Hide form
+    </button>
+
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="inputTitle">
+        Title
+      </label>
+      <input
+        autocomplete="off"
+        #title="ngModel"
+        [(ngModel)]="newNews.title"
+        id="inputTitle"
+        class="user__input"
+        name="title"
+        placeholder="Title"
+        required
+        type="text"
+      >
+    </div>
+
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="inputUrl">
+        Video Url
+      </label>
+      <input
+        autocomplete="off"
+        #videoUrl="ngModel"
+        [(ngModel)]="newNews.videoUrl"
+        id="inputUrl"
+        class="user__input"
+        name="title"
+        placeholder="Video Url"
+        type="text"
+      >
+    </div>
+
+    <div class="user__group">
+      <label
+        class="user__label"
+        for="inputText">
+        Text
+      </label>
+      <textarea
+        autocomplete="off"
+        #text="ngModel"
+        [(ngModel)]="newNews.text"
+        id="inputText"
+        class="user__input textarea"
+        name="text"
+        placeholder="Text"
+        required
+        type="text"
+      ></textarea>
+    </div>
+
+    <button
+      class="user__btn"
+      (click)="newsForm.form.markAllAsTouched()"
+      type="submit">
+      Submit
+    </button>
+  </form>
+</div>
+
+
+
+
