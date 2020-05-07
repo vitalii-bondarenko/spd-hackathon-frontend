@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://hackathon-back.herokuapp.com/'
+  baseUrl: 'https://spd-hackathon-back.herokuapp.com/'
 };
